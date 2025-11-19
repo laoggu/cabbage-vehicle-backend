@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/laoggu/cabbage-vehicle-backend/api";
+
+service VehicleService {
+  rpc CreateVehicle(CreateVehicleReq) returns (Vehicle);
+  rpc UpdateVehicle(UpdateVehicleReq) returns (Vehicle);
+  rpc GetVehicle(GetVehicleReq) returns (Vehicle);
+  rpc ListVehicles(ListVehiclesReq) returns (ListVehiclesResp);
+  rpc GetUploadURL(GetUploadURLReq) returns (GetUploadURLResp);
+}
+
+message Vehicle {
+  string id         = 1;
+  string plate      = 2;
+  string model      = 3;
+  bool   cold_chain = 4;
+  string ice_box_no = 5;
+}
+
+message CreateVehicleReq {
+  string plate      = 1;
+  string model      = 2;
+  bool   cold_chain = 3;
+  string ice_box_no = 4;
+}
+
+message UpdateVehicleReq {
+  string id         = 1;
+  string plate      = 2;
+  string model      = 3;
+  bool   cold_chain = 4;
+  string ice_box_no = 5;
+}
+
+message GetVehicleReq {
+  string id = 1;
+}
+
+message ListVehiclesReq {
+  int32 offset = 1;
+  int32 limit  = 2;
+}
+
+message ListVehiclesResp {
+  repeated Vehicle items = 1;
+}
+
+message GetUploadURLReq {
+  string suffix = 1; // 文件后缀，如 .jpg
+}
+
+
+message GetUploadURLResp {
+  string upload_url = 1;
+  string object_key = 2;
+}

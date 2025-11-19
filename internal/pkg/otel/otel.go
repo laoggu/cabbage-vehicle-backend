@@ -2,6 +2,7 @@ package otel
 
 import (
 	"context"
+
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/jaeger"
 	"go.opentelemetry.io/otel/sdk/resource"

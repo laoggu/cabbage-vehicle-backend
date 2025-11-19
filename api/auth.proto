@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/laoggu/cabbage-vehicle-backend/api";
+
+service AuthService {
+  rpc WxLogin(WxLoginReq) returns (WxLoginResp);
+  rpc Refresh(RefreshReq) returns (RefreshResp);
+}
+
+message WxLoginReq {
+  string code = 1; // 小程序临时登录凭证
+}
+
+message WxLoginResp {
+  string access_token  = 1;
+  string refresh_token = 2;
+  int64  expires_in    = 3;
+}
+
+message RefreshReq {
+  string refresh_token = 1;
+}
+
+message RefreshResp {
+  string access_token = 1;
+  int64  expires_in   = 2;
+}
