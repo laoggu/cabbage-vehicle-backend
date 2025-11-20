@@ -1,0 +1,31 @@
+# gqlgen 版本锁定，防止升级不兼容
+version: v0.17.45
+
+# GraphQL 入口文件
+schema:
+  - api/*.graphql
+
+# 代码生成路径
+exec:
+  filename: internal/graph/generated/generated.go
+model:
+  filename: internal/graph/model/models_gen.go
+resolver:
+  layout: follow-schema
+  dir: internal/graph/resolver
+  filename_template: "{name}.resolvers.go"
+
+# 自动绑定已有领域模型（可选）
+models:
+  Vehicle:
+    model: github.com/laoggu/cabbage-vehicle-backend/internal/domain/entity.Vehicle
+  # 后续再补 Route、Alarm 等
+
+# 禁止生成指针切片，减少空指针
+omit_slice_element_pointers: true
+
+# 字段命名风格：snake -> go camelCase
+struct_tag: json
+
+# 生成代码后不自动格式化（交给 make fmt）
+skip_mod_tidy: true
