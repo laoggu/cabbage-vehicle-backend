@@ -46,7 +46,7 @@ function Run {
 
 function Test {
     Write-Host ">>> running M1 tests" -ForegroundColor Green
-    .\scripts\test_m1.ps1
+    .\scripts\test_m1.sh
 }
 
 function Help {
